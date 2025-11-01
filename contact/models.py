@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Category(models.Model):
     class Meta:
@@ -12,6 +13,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Contact(models.Model):
     first_name = models.CharField(max_length=30)
@@ -24,19 +26,11 @@ class Contact(models.Model):
     picture = models.ImageField(blank=True, upload_to='pictures/%Y/%m/')
 
     category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name="contacts"
+        Category, on_delete=models.SET_NULL, blank=True, null=True, related_name="contacts"
     )
 
     owner = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name="contacts"
+        User, on_delete=models.SET_NULL, blank=True, null=True, related_name="contacts"
     )
 
     def __str__(self):
