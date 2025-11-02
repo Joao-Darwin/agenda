@@ -51,3 +51,11 @@ def contact(request, id):
     }
 
     return render(request, 'contact/contact.html', context)
+
+
+def create(request):
+    context = {
+        'title': 'Create Contact',
+    }
+
+    return render(request, 'contact/create.html', context)
