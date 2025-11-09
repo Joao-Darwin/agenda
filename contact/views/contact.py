@@ -54,6 +54,12 @@ def contact(request, id):
 
 
 def create(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        print(first_name, last_name)
+
     context = {
         'title': 'Create Contact',
     }
