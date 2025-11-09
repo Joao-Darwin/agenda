@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator
 from contact.models import Contact
+from contact.forms import ContactForm
 
 
 def index(request):
@@ -55,13 +56,8 @@ def contact(request, id):
 
 def create(request):
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-
-        print(first_name, last_name)
-
-    context = {
-        'title': 'Create Contact',
-    }
+        context = {'title': 'Create Contact', 'form': ContactForm(request.POST)}
+    else:
+        context = {'title': 'Create Contact', 'form': ContactForm()}
 
     return render(request, 'contact/create.html', context)
